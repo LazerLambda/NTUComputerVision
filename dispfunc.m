@@ -6,13 +6,14 @@ function [map] = dispfunc(Ir, Il, Dx, Dy)
     [syr sxr] = size(Ir);
    
     
-    map = ones([syr sxr]);
+    map = ones([(syr - Dy) (sxr - Dx)]);
     
     for i = (1):(syr - Dy - 1)
         for j = (1):(sxr - Dx - 1)
          
             T = Il((i):(i+Dy-1), (j):(j + Dx-1));
             Tsq = T.^2;
+            
             
             % limit bounds
             limitright = j + 15;
@@ -25,11 +26,12 @@ function [map] = dispfunc(Ir, Il, Dx, Dy)
                 limitleft = j;
             end 
             
+            
             % init witnesses
             min = intmax;
             index = 0;
 
-
+            % iterate over 15+- neighbourhood
             for k = limitleft:(limitright - 1)
                 I = Ir((i):(i+Dy-1), (k):(k + Dx-1));
                 Isq = I.^2;
