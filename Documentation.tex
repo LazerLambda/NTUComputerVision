@@ -47,8 +47,10 @@
 	An operation is now applied to the already squared image, whereby only values above a threshold are being not zero. 
 	For the selection of the threshold, a value should be used that is neither too large nor too small. 
 	If the value is too small, only areas are separated. If the value is too high, many edges are no longer recognized as such.
-	\subsection{Thresholding}
-
+	\subsection{Canny Algorithm}
+	By a higher sigma, the edges of the distribution fall more strongly in weight. This causes the edges of the distribution to become weaker. 
+	The higher the sigma, the fewer corners are detected and only the strong corners are detected. By a stronger approximation, 
+	however, also the noises in the picture are removed more strongly.  For this aspect, a higher sigma makes sense.
 	\section{Line Finding using Hough Transform}
 	\section{3D Stereo}
 	\subsection{a)} 
