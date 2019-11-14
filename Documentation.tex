@@ -34,6 +34,7 @@
 	\maketitle
 	
 	\section{Edge Detection}
+
 	At first, the sobel mask was created, to transform the picture and make the lines more visible.
 	By applying the horizontal filter, the lines became visible in their horizontal position.
 	The same applied to the vertical filter with vertical lines.This is due to the sum over the matrix, 
@@ -55,8 +56,19 @@
 	\subsubsection{Changing the lower threshold}If the lower barrier is changed downwards, more corners are identified as such. 
 	If the barrier is raised, these weaker corners are no longer detected.
 	Since the Canny algorithm requires a lower limit, this value has a significant effect on the outcome.
+
 	\section{Line Finding using Hough Transform}
+
+	The Hough transformation is discrete, while the Radon transformation is continuous. 
+	Since in this case the image is discrete, the radon transformation can be applied here equivalently. After the maximum has been determined, the constant for the lines must now be calculated.
+	The standard form is used. 
+
+	$$ Ax + By = C $$ 
+
+	
+
 	\section{3D Stereo}
+
 	\subsection{a)} 
 	By using the \textit{conv2} and \textit{rot90} functions, for loops could largely be dispensed with. 
 	
