@@ -48,9 +48,13 @@
 	For the selection of the threshold, a value should be used that is neither too large nor too small. 
 	If the value is too small, only areas are separated. If the value is too high, many edges are no longer recognized as such.
 	\subsection{Canny Algorithm}
+	\subsubsection{Changing the sigma value}
 	By a higher sigma, the edges of the distribution fall more strongly in weight. This causes the edges of the distribution to become weaker. 
 	The higher the sigma, the fewer corners are detected and only the strong corners are detected. By a stronger approximation, 
-	however, also the noises in the picture are removed more strongly.  For this aspect, a higher sigma makes sense.
+	however, also the noises in the picture are removed more strongly. For this aspect, a higher sigma makes sense.
+	\subsubsection{Changing the lower threshold}If the lower barrier is changed downwards, more corners are identified as such. 
+	If the barrier is raised, these weaker corners are no longer detected.
+	Since the Canny algorithm requires a lower limit, this value has a significant effect on the outcome.
 	\section{Line Finding using Hough Transform}
 	\section{3D Stereo}
 	\subsection{a)} 
