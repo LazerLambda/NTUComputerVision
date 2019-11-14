@@ -34,6 +34,21 @@
 	\maketitle
 	
 	\section{Edge Detection}
+	At first, the sobel mask was created, to transform the picture and make the lines more visible.
+	By applying the horizontal filter, the lines became visible in their horizontal position.
+	The same applied to the vertical filter with vertical lines.This is due to the sum over the matrix, 
+	since the respective axis is always taken into account here.In this application, 
+	diagonal edges are crossed on the horizontal or vertical side, so that several parallel lines can be seen here.
+	\subsection{Squaring the filtered Images}
+	With this method, the areas in the image which are not zero become much larger. This also increases the differences in between the image.
+	Thus a clear distinction to the sky becomes clear, since here the gradients in this area of the picture are very small. 
+	This method makes the differences between the edges clearer.
+	\subsection{Thresholding}
+	An operation is now applied to the already squared image, whereby only values above a threshold are being not zero. 
+	For the selection of the threshold, a value should be used that is neither too large nor too small. 
+	If the value is too small, only areas are separated. If the value is too high, many edges are no longer recognized as such.
+	\subsection{Thresholding}
+
 	\section{Line Finding using Hough Transform}
 	\section{3D Stereo}
 	\subsection{a)} 
