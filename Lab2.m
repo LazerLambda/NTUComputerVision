@@ -2,12 +2,10 @@
 % a)
 I = imread('macritchie.jpg');
 
-%figure, imshow(I, 'Border', 'tight');
-
 I = rgb2gray(I);
 figure, imshow(I, 'Border', 'tight');
 print('I','-dpng');
-%figure, imshow(I, 'Border', 'tight');
+figure, imshow(I, 'Border', 'tight');
 
 I = double(I);
 
@@ -104,42 +102,58 @@ print('E_canny_tl09','-dpng');
 
 E = E_canny_s1;
 
-
-
 % b)
-
+thetasc = 0:179;
 [H, xp] = radon(E);
-imagesc(H);
-colormap(gca,hot), colorbar
+
+% display the Hough domain
+figure, imagesc(thetasc, xp, H);
+colormap(gca,hot), colorbar;
 
 % c)
+% get the indices of the maximum of the votes
+[Value,Ind] = max(H(:));
+[radius,theta] = ind2sub(size(H),Ind);
+radius = xp(radius);
 
-[radius, theta] = max(max(H));
+% get the size of the 
+[size_Ey, size_Ex] = size(E);
 
 % d)
 [A, B] = pol2cart(theta*pi/180, radius);
 B = -B;
 
-[size_Ey, size_Ex] = size(E);
+% get x and y coordinates
+x = A + size_Ex / 2; 
+y = B + size_Ey / 2;
 
-% readjust the scale
-x = ( size_Ex / 2 ) - B;
-y = ( size_Ey / 2 ) - A;
+
+% get the gradient of the line
+dx = B / A;
+
+% get the constant
+c = y - (A / B * -1)* x;
 
 % e)
-% finding C
-C = A*x + B*y; 
+if c == -Inf || c == Inf
+    % special case if theta = 0° or theta = 180° 
+    yl = 0;
+    yr = size_Ey - 1;
+    xl = x;
+    xr = x;
+else
+    % since the constant is known,
+    xl = 0;
+    xr = size_Ex - 1;
+    yl = c;
+    yr = c + (A / B * -1)* size_Ex;
+end
 
 
 % f)
-xl = 0;
-xr = size_Ex;
-
-yl = (C - A*xl) / B;
-yr = (C - A*xr) / B;
-
+% display image
 imshow(imread('macritchie.jpg'), 'Border', 'tight');
-line([xl xr], [yl (yr)], 'LineWidth', 3.0);
+line([xl xr], [yl yr], 'LineWidth', 3.0);
 print('macritchie_line_disp','-dpng');
 
 

@@ -61,11 +61,14 @@
 
 	The Hough transformation is discrete, while the Radon transformation is continuous. 
 	Since in this case the image is discrete, the radon transformation can be applied here equivalently. After the maximum has been determined, the constant for the lines must now be calculated.
-	The standard form is used. 
+	Since, with the exception of the cases theta = 0° and theta = 180° , a constant exists on the y-axis, this is determined first.
+	Since C is unknown and only A and B are known, the line representation y = mx +c must first be used. 
+	From the Radon Domain a point can be taken, which represents a line. 
+	This line is orthogonal to the searched line, so that the gradient can be determined. 
+	To do this, the slope is inverted and the sign is changed. From this representation, the standart form of a line can be easily obtained.
+	Now the points yl and yr can be calculated by calculating the intersection points on the y-axis.
+	The special case that there is no intersection point on the y-axis was also taken into account.
 
-	$$ Ax + By = C $$ 
-
-	
 
 	\section{3D Stereo}
 
