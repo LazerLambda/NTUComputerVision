@@ -37,11 +37,20 @@ print('I2','-dpng');
 
 
 % d)
+threshold = 1000;
+Et = I2 > threshold;
+imshow(Et, 'Border', 'tight');
+print('Et1000','-dpng');
 
 threshold = 10000;
 Et = I2 > threshold;
 imshow(Et, 'Border', 'tight');
-print('Et','-dpng');
+print('Et10000','-dpng');
+
+threshold = 100000;
+Et = I2 > threshold;
+imshow(Et, 'Border', 'tight');
+print('Et100000','-dpng');
 
 % the higher the threshold, the better the edges can be detected
 
